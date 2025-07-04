@@ -3,11 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Instagram</title>
+    <title><%= username %>'s Instagram</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <h1>this page belongs to @<%=username %></h1>
-    <button>follow</button>
-    <button>message</button>
+  <body class="container py-4">
+    <h1>This page belongs to @<%= username %></h1>
+    <p><strong>Followers:</strong> <%= userData.followers %></p>
+    <p><strong>Following:</strong> <%= userData.following %></p>
+
+    <div class="d-flex gap-2 mb-3">
+      <button class="btn btn-primary">Follow</button>
+      <button class="btn btn-secondary">Message</button>
+    </div>
+
+    <div class="row">
+      <% for (let post of userData.posts) { %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="<%= post.image %>" class="card-img-top" alt="post image" />
+          <div class="card-body">
+            <p class="card-text">❤️ <%= post.likes %> Likes</p>
+            <p class="card-text">💬 <%= post.comments %> Comments</p>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
   </body>
 </html>
